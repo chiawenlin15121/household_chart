@@ -14,5 +14,5 @@ module.exports = {
       }
     }
   },
-  publicPath: process.env.NODE_ENV === 'production' ? '/hosthold_chart/' : '/'
+  publicPath: process.env.NODE_ENV === 'production' ? '/household_chart/' : '/'
 }
