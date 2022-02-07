@@ -12,7 +12,7 @@
           .spinner-border
         section(v-else-if="loadingFailed")
           .text-danger Something went wrong.
-            .hover.text-primary(@click="loadData") Try againg
+            .hover.text-primary(@click="loadData") Try again
         section.pt-3.d-flex.flex-column.overflow-auto(v-else)
           div
             label.form-label.me-3 地區
