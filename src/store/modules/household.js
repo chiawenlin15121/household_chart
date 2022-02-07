@@ -17,12 +17,12 @@ const getters = {
   districts: (state) => Object.keys(state.dataMap),
   isLoading: (state) => !state.loaded && !state.loadingFailed
 }
-
 // actions
 const actions = {
   loadData: ({
     commit
   }) => {
+    commit('setLoading')
     axios.get(HOUSEHOLD_API_URL).then((res) => {
       const {
         success,
@@ -31,20 +31,24 @@ const actions = {
         }
       } = res.data
       if (!success) {
-        commit('setLoadingStatus', false)
+        commit('setLoadStatus', false)
         return
       }
       commit('setDataMap', districtFilter(records.slice(1), TARGET_CITY_NAME))
-      commit('setLoadingStatus', true)
+      commit('setLoadStatus', true)
     }).catch(() => {
-      commit('setLoadingStatus', false)
+      commit('setLoadStatus', false)
     })
   }
 }
 
 // mutations
 const mutations = {
-  setLoadingStatus(state, success) {
+  setLoading(state) {
+    state.loadingFailed = false
+    state.loaded = false
+  },
+  setLoadStatus(state, success) {
     state.loadingFailed = !success
     state.loaded = success
   },

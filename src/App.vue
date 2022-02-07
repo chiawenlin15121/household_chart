@@ -10,6 +10,9 @@
           v-if="isLoading"
           class="pt-3 pt-md-0 h-100 w-100 d-flex justify-content-center align-items-center")
           .spinner-border
+        section(v-else-if="loadingFailed")
+          .text-danger Something went wrong.
+            .hover.text-primary(@click="loadData") Try againg
         section.pt-3.d-flex.flex-column.overflow-auto(v-else)
           div
             label.form-label.me-3 地區
@@ -48,6 +51,9 @@ export default {
       'selectedDistrict',
       'isLoading'
     ]),
+    loadingFailed() {
+      return this.$store.state.household.loadingFailed
+    },
     loaded() {
       return this.$store.state.household.loaded
     }
