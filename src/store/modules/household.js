@@ -1,8 +1,11 @@
 import axios from 'axios'
 import districtFilter from '../../helper/districtFilter'
 
-const HOUSEHOLD_API_HOST = process.env.NODE_ENV === 'production' ? 'https://od.moi.gov.tw' : 'devapi'
-const HOUSEHOLD_API_URL = `${HOUSEHOLD_API_HOST}/api/v1/rest/datastore/301000000A-000082-041`
+// const HOUSEHOLD_API_HOST = process.env.NODE_ENV === 'production' ? 'https://od.moi.gov.tw' : 'devapi'
+// const HOUSEHOLD_API_URL = `${HOUSEHOLD_API_HOST}/api/v1/rest/datastore/301000000A-000082-041`
+const HOUSEHOLD_API_URL = 'http://localhost:3000'
+// const HOUSEHOLD_API_URL = 'https://nodejs-cors-proxy.herokuapp.com'
+// const HOUSEHOLD_API_URL = 'https://cors-anywhere.herokuapp.com'
 const TARGET_CITY_NAME = '臺北市'
 
 const defaultState = () => ({
@@ -23,7 +26,7 @@ const actions = {
     commit
   }) => {
     commit('setLoading')
-    axios.get(HOUSEHOLD_API_URL).then((res) => {
+    axios.get(`${HOUSEHOLD_API_URL}/od.moi.gov.tw:443/api/v1/rest/datastore/301000000A-000082-041`).then((res) => {
       const {
         success,
         result: {
